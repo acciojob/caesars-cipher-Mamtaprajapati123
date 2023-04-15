@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ROT13 Decoder</title>
-  </head>
-  <body>
-    <label for="input">Enter ROT13-encoded text:</label>
-    <textarea id="input"></textarea>
-    <button onclick="decode()">Decode</button>
-    <p>Decoded text:</p>
-    <textarea id="output"></textarea>
-    
-    <script>
-      function decode() {
-        const input = document.getElementById("input").value;
-        const output = document.getElementById("output");
-        output.value = rot13(input);
-      }
-      
-      function rot13(str) {
-        let result = "";
-        for (let i = 0; i < str.length; i++) {
-          let code = str.charCodeAt(i);
-          if (code >= 65 && code <= 90) {  // A-Z range
-            code = ((code - 65 + 13) % 26) + 65;  // shift by 13 places
-          }
-          result += String.fromCharCode(code);
-        }
-        return result;
-      }
-    </script>
-  </body>
+<head>
+	<title>ROT13 Cipher</title>
+</head>
+<body>
+	<h1>ROT13 Cipher</h1>
+	<p>Enter your message:</p>
+	<textarea id="input"></textarea>
+	<br>
+	<button onclick="encode()">Encode</button>
+	<button onclick="decode()">Decode</button>
+	<br>
+	<p>Result:</p>
+	<textarea id="output" readonly></textarea>
+
+	<script>
+		function rot13(str) {
+			var input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+			var output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+			var index = x => input.indexOf(x);
+			return str.split('')
+				.map(x => index(x) > -1 ? output[index(x)] : x)
+				.join('');
+		}
+
+		function encode() {
+			var input = document.getElementById('input').value;
+			var output = rot13(input);
+			document.getElementById('output').value = output;
+		}
+
+		function decode() {
+			var input = document.getElementById('input').value;
+			var output = rot13(input);
+			document.getElementById('output').value = output;
+		}
+	</script>
+</body>
 </html>

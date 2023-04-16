@@ -4,36 +4,25 @@
 	<title>ROT13 Cipher</title>
 </head>
 <body>
-	<h1>ROT13 Cipher</h1>
-	<p>Enter your message:</p>
-	<textarea id="input"></textarea>
-	<br>
-	<button onclick="encode()">Encode</button>
+	<textarea id="input" placeholder="Enter ROT13 encoded text"></textarea>
 	<button onclick="decode()">Decode</button>
-	<br>
-	<p>Result:</p>
-	<textarea id="output" readonly></textarea>
-
+	<textarea id="output" placeholder="Decoded text will appear here"></textarea>
 	<script>
-		function rot13(str) {
-			var input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-			var output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-			var index = x => input.indexOf(x);
-			return str.split('')
-				.map(x => index(x) > -1 ? output[index(x)] : x)
-				.join('');
-		}
-
-		function encode() {
-			var input = document.getElementById('input').value;
-			var output = rot13(input);
-			document.getElementById('output').value = output;
-		}
-
 		function decode() {
-			var input = document.getElementById('input').value;
-			var output = rot13(input);
-			document.getElementById('output').value = output;
+			let inputText = document.getElementById("input").value;
+			let outputText = "";
+			for (let i = 0; i < inputText.length; i++) {
+				let char = inputText.charAt(i);
+				if (char.match(/[A-Z]/)) {
+					let code = inputText.charCodeAt(i) - 13;
+					if (code < 65) {
+						code += 26;
+					}
+					char = String.fromCharCode(code);
+				}
+				outputText += char;
+			}
+			document.getElementById("output").value = outputText;
 		}
 	</script>
 </body>

@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ROT13 Cipher</title>
+  <title>ROT13 Cipher</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<textarea id="input" placeholder="Enter ROT13 encoded text"></textarea>
-	<button onclick="decode()">Decode</button>
-	<textarea id="output" placeholder="Decoded text will appear here"></textarea>
-	<script>
-		function decode() {
-			let inputText = document.getElementById("input").value;
-			let outputText = "";
-			for (let i = 0; i < inputText.length; i++) {
-				let char = inputText.charAt(i);
-				if (char.match(/[A-Z]/)) {
-					let code = inputText.charCodeAt(i) - 13;
-					if (code < 65) {
-						code += 26;
-					}
-					char = String.fromCharCode(code);
-				}
-				outputText += char;
-			}
-			document.getElementById("output").value = outputText;
-		}
-	</script>
+  <div class="container">
+    <h1>ROT13 Cipher</h1>
+    <div class="form-group">
+      <label for="input-text">Enter ROT13 encoded text:</label>
+      <textarea id="input-text"></textarea>
+    </div>
+    <div class="form-group">
+      <button id="decode-button">Decode</button>
+    </div>
+    <div class="form-group">
+      <label for="output-text">Decoded text:</label>
+      <textarea id="output-text" readonly></textarea>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ROT13 Decoder</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>ROT13 Cipher</title>
+	<style>
+		textarea {
+			width: 100%;
+			height: 100px;
+			margin-bottom: 10px;
+			font-size: 16px;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+		button {
+			font-size: 16px;
+			padding: 10px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #3E8E41;
+		}
+	</style>
 </head>
 <body>
-	<div class="container">
-		<h1>ROT13 Decoder</h1>
-		<label for="input">Enter ROT13 encoded text:</label>
-		<textarea id="input"></textarea>
-		<button onclick="decode()">Decode</button>
-		<label for="output">Decoded text:</label>
-		<textarea id="output" readonly></textarea>
-	</div>
-	<script src="script.js"></script>
+	<h1>ROT13 Cipher</h1>
+	<label for="input">Enter ROT13 encoded text:</label>
+	<textarea id="input"></textarea>
+	<button onclick="decode()">Decode</button>
+	<label for="output">Decoded text:</label>
+	<textarea id="output" readonly></textarea>
+	<script>
+		function decode() {
+			let inputText = document.getElementById("input").value;
+			let outputText = rot13(inputText);
+			document.getElementById("output").value = outputText;
+		}
+
+		function rot13(str) {
+		  // Define a helper function to shift a single uppercase letter by 13 places
+		  function shiftLetter(letter) {
+		    const code = letter.charCodeAt(0);
+		    if (code >= 65 && code <= 90) { // uppercase letter
+		      return String.fromCharCode(((code - 65 + 13) % 26) + 65);
+		    } else {
+		      return letter; // non-alphabetic character
+		    }
+		  }
+
+		  // Use Array.map() to apply the shiftLetter function to each character of the string
+		  return str.split('').map(shiftLetter).join('');
+		}
+	</script>
 </body>
 </html>

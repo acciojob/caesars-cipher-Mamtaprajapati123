@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ROT13 Cipher</title>
-  <link rel="stylesheet" href="style.css">
+	<title>ROT13 Decoder</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>ROT13 Cipher</h1>
-    <div class="form-group">
-      <label for="input-text">Enter ROT13 encoded text:</label>
-      <textarea id="input-text"></textarea>
-    </div>
-    <div class="form-group">
-      <button id="decode-button">Decode</button>
-    </div>
-    <div class="form-group">
-      <label for="output-text">Decoded text:</label>
-      <textarea id="output-text" readonly></textarea>
-    </div>
-  </div>
-  <script src="script.js"></script>
+	<div class="container">
+		<h1>ROT13 Decoder</h1>
+		<label for="input">Enter ROT13 encoded text:</label>
+		<textarea id="input"></textarea>
+		<button onclick="decode()">Decode</button>
+		<label for="output">Decoded text:</label>
+		<textarea id="output" readonly></textarea>
+	</div>
+	<script src="script.js"></script>
 </body>
 </html>

@@ -1,24 +1,16 @@
-function decodeRot13(str) {
-  // Define a helper function to shift a single uppercase letter by 13 places
-  function shiftLetter(letter) {
-    const code = letter.charCodeAt(0);
-    if (code >= 65 && code <= 90) { // uppercase letter
-      return String.fromCharCode(((code - 65 + 13) % 26) + 65);
-    } else {
-      return letter; // non-alphabetic character
+function decode() {
+  let inputText = document.getElementById("input").value;
+  let outputText = "";
+  for (let i = 0; i < inputText.length; i++) {
+    let char = inputText.charAt(i);
+    if (char.match(/[A-Z]/)) {
+      let code = inputText.charCodeAt(i) - 13;
+      if (code < 65) {
+        code += 26;
+      }
+      char = String.fromCharCode(code);
     }
+    outputText += char;
   }
-
-  // Use Array.map() to apply the shiftLetter function to each character of the string
-  return str.split('').map(shiftLetter).join('');
+  document.getElementById("output").value = outputText;
 }
-
-const inputTextArea = document.getElementById('input-text');
-const outputTextArea = document.getElementById('output-text');
-const decodeButton = document.getElementById('decode-button');
-
-decodeButton.addEventListener('click', () => {
-  const inputText = inputTextArea.value.toUpperCase();
-  const outputText = decodeRot13(inputText);
-  outputTextArea.value = outputText;
-});
